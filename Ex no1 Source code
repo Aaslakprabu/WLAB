@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Online Event Registration & Promotional Portal</title>
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header>
+        <h1>Tech-Innovate 2024</h1>
+        <p>The Future of Digital Transformation</p>
+    </header>
+
+    <hr>
+
+    <!-- Media Section -->
+    <section>
+        <h2>Event Highlights</h2>
+        
+        <!-- Image Banner -->
+        <img src="https://via.placeholder.com/800x300?text=Tech-Innovate+2024+Banner" alt="Event Banner" width="800">
+
+        <h3>Promotional Video</h3>
+        <video width="600" controls>
+            <source src="promo_video.mp4" type="video/mp4">
+            Your browser does not support the video tag.        </video>
+
+        <h3>Event Theme Audio</h3>
+        <audio controls>
+            <source src="intro_audio.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+    </section>
+
+    <hr>
+
+    <!-- Registration Form Section -->
+    <section>
+        <h2>Register for the Event</h2>
+        <form action="#" method="post" enctype="multipart/form-data">
+            
+            <p>
+                <label for="fullname">Full Name:</label><br>
+                <input type="text" id="fullname" name="fullname" required>
+            </p>
+
+            <p>
+                <label for="email">Email Address:</label><br>
+                <input type="email" id="email" name="email" required>
+            </p>
+
+            <p>
+                <label for="dob">Date of Birth:</label><br>
+                <input type="date" id="dob" name="dob" required>
+            </p>
+
+            <p>
+                <label>Gender:</label><br>
+                <input type="radio" id="male" name="gender" value="male"> Male
+                <input type="radio" id="female" name="gender" value="female"> Female
+                <input type="radio" id="other" name="gender" value="other"> Other
+            </p>            <p>
+                <label for="category">Event Category:</label><br>
+                <select id="category" name="category">
+                    <option value="workshop">Workshop</option>
+                    <option value="seminar">Seminar</option>
+                    <option value="hackathon">Hackathon</option>
+                </select>
+            </p>
+
+            <p>
+                <label for="id_proof">Upload ID Proof (PDF):</label><br>
+                <input type="file" id="id_proof" name="id_proof" accept=".pdf">
+            </p>
+
+            <p>
+                <label for="comments">Special Requirements:</label><br>
+                <textarea id="comments" name="comments" rows="4" cols="50"></textarea>
+            </p>
+
+            <p>
+                <input type="submit" value="Complete Registration">
+            </p>
+
+        </form>
+    </section>
+
+    <hr>
+
+    <!-- Contact Details Section -->
+    <footer>
+        <h3>Contact Details</h3>
+        <p><strong>Phone:</strong> 9843530077</p>
+        <p><strong>Email Inquiry:</strong> aaslakprabu@karunya.edu.in</p>
+        <p><strong>Location:</strong> Karunya</p>
+        <p>&copy; 2024 Tech-Innovate Global. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
