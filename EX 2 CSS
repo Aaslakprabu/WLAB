@@ -1,0 +1,170 @@
+/* Premium Graphical Background & Reset */
+:root {
+    --primary: #6366f1;
+    --primary-hover: #4f46e5;
+    --glass: rgba(255, 255, 255, 0.9);
+    --text-dark: #1e293b;
+}
+
+body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: var(--text-dark);
+    line-height: 1.6;
+    /* Advanced Mesh Gradient Background */
+    background-color: #e5e7eb;
+    background-image: 
+        radial-gradient(at 0% 0%, hsla(253,16%,7%,1) 0, transparent 50%), 
+        radial-gradient(at 50% 0%, hsla(225,39%,30%,1) 0, transparent 50%), 
+        radial-gradient(at 100% 0%, hsla(339,49%,30%,1) 0, transparent 50%);
+    background-attachment: fixed;
+    min-height: 100vh;
+}
+
+/* Header Styling */
+header {
+    text-align: center;
+    padding: 60px 20px;
+    color: white;
+}
+
+header h1 {
+    font-size: 3rem;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    text-shadow: 0 10px 20px rgba(0,0,0,0.3);
+}
+
+/* Flexbox Layout Container */
+.container {
+    display: flex;    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    max-width: 1200px;
+    margin: -40px auto 60px;
+    padding: 0 20px;
+}
+
+/* Glassmorphism Sections */
+.media-section, .form-section {
+    flex: 1;
+    min-width: 350px;
+    background: var(--glass);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    padding: 40px;
+    border-radius: 24px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    transition: transform 0.3s ease;
+}
+
+.media-section:hover, .form-section:hover {
+    transform: translateY(-5px);
+}/* Media Elements */
+img, video {
+    width: 100%;
+    border-radius: 15px;
+    margin: 20px 0;
+    box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+}
+
+audio {    width: 100%;
+    margin-top: 10px;
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
+}
+
+/* Form Controls & Transitions */
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    font-weight: 700;
+    margin-bottom: 8px;
+    font-size: 0.85rem;
+    text-transform: uppercase;    color: #475569;
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 14px;
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
+    background: white;
+    font-size: 1rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+input:focus, select:focus, textarea:focus {    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.2);
+}.submit-btn {
+    background: linear-gradient(135deg, var(--primary) 0%, #a855f7 100%);
+    color: white;
+    border: none;    padding: 16px;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    cursor: pointer;    width: 100%;
+    margin-top: 10px;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 15px -3px rgba(99, 102, 241, 0.4);
+}
+
+.submit-btn:hover {
+    filter: brightness(1.1);
+    transform: scale(1.02);
+    box-shadow: 0 20px 25px -5px rgba(99, 102, 241, 0.4);
+}
+
+/* Footer & Contact Profile */
+footer {
+    background: rgba(15, 23, 42, 0.95);
+    color: white;
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.contact-card {
+    display: inline-grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 30px;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    margin-bottom: 30px;
+}
+
+.contact-card p {
+    margin: 5px 0;
+}
+
+.contact-card strong {
+    display: block;
+    color: var(--primary);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 992px) {
+    .container {
+        flex-direction: column;
+        align-items: center;
+    }
+    .media-section, .form-section {
+        width: 100%;
+        max-width: 600px;
+    }
+    .contact-card {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+}
