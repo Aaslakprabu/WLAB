@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cake Shop Order System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        /* Top Red Banner */
+        header {
+            background-color: #c00000;
+            color: white;
+            padding: 10px;
+            font-size: 24px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        /* Image Gallery */
+        .cake-display {
+            display: flex;
+            justify-content: space-around;
+            padding: 20px 5%;
+        }
+
+        .cake-box {
+            width: 20%;
+        }
+
+        .cake-box img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border: 1px solid #ddd;
+        }
+
+        .cake-box p {
+            font-size: 13px;
+            margin-top: 10px;
+            font-weight: 500;
+        }
+
+        /* Order Form Section */
+        .order-section {
+            width: 550px;
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        .order-section h2 {
+            color: #005aff;
+            text-align: center;
+            font-size: 32px;
+            margin-top: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            color: #005aff;
+            font-weight: bold;
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #777;
+            font-size: 16px;
+            font-weight: bold;
+            color: #c00000;
+        }
+
+        /* Blue Button and Divider */
+        .btn-area {
+            text-align: center;
+            padding: 15px 0 25px 0;
+            border-bottom: 2px solid #005aff;
+            margin-bottom: 20px;
+        }
+
+        #calculateBtn {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 100px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        /* Bill Section at Bottom */
+        .bill-area {
+            margin-bottom: 40px;
+        }
+
+        .bill-title {
+            color: #00a651;
+            font-size: 26px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .final-row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 32px;
+            font-weight: bold;
+        }
+
+        .final-label {
+            background-color: #00a651;
+            color: white;
+            padding: 5px 60px;
+            margin-right: 20px;
+        }
+
+        .final-price {
+            color: #c00000;
+        }
+    </style>
+</head>
+<body>
+
+    <header>CAKE SHOP</header>
+
+    <div class="cake-display">
+        <div class="cake-box">
+            <img src="C:\Users\URK23CS5098\Documents\Color cake.jpg" alt="Color Cake">
+            <p>Color Cake – Rs. 300</p>
+        </div>
+        <div class="cake-box">
+            <img src="C:\Users\URK23CS5098\Documents\Brown cake.jpg" alt="Brown Cake">
+            <p>Brown Cake – Rs. 200</p>
+        </div>
+        <div class="cake-box">
+            <img src="C:\Users\URK23CS5098\Documents\Milky Cake.jpg" alt="Milky Cake">
+            <p>Milky Cake – Rs. 250</p>
+        </div>
+        <div class="cake-box">
+            <img src="C:\Users\URK23CS5098\Documents\Black Forest cake.jpg" alt="Black Forest Cake">
+            <p>Black Forest Cake – Rs. 350</p>
+        </div>
+    </div>
+
+    <div class="order-section">
+        <h2>Order Cake</h2>
+        
+        <div class="form-group">
+            <label>Color Cake(Quantity)</label>
+            <input type="number" id="in1" value="2">
+        </div>
+
+        <div class="form-group">
+            <label>Brown Cake(Quantity)</label>
+            <input type="number" id="in2" value="1">
+        </div>
+
+        <div class="form-group">
+            <label>Milky Cake(Quantity)</label>
+            <input type="number" id="in3" value="2">
+        </div>
+
+        <div class="form-group">
+            <label>Black Forest Cake(Quantity)</label>
+            <input type="number" id="in4" value="1">
+        </div>
+
+        <div class="btn-area">
+            <button id="calculateBtn" onclick="performCalculation()">Place Order</button>
+        </div>
+    </div>
+
+    <div class="bill-area">
+        <div class="bill-title">Purchase Order Bill!!</div>
+        <div class="final-row">
+            <div class="final-label">Total Price</div>
+            <div class="final-price">Rs.<span id="totalText">1650</span></div>
+        </div>
+    </div>
+
+    <script>
+        function performCalculation() {
+            // Using DOM methods to find elements by ID
+            var q1 = document.getElementById("in1").value;
+            var q2 = document.getElementById("in2").value;
+            var q3 = document.getElementById("in3").value;
+            var q4 = document.getElementById("in4").value;
+
+            // Unit Prices
+            var priceColor = 300;
+            var priceBrown = 200;
+            var priceMilky = 250;
+            var priceForest = 350;
+
+            // Calculate total
+            var total = (q1 * priceColor) + (q2 * priceBrown) + (q3 * priceMilky) + (q4 * priceForest);
+
+            // Update the bill section
+            document.getElementById("totalText").innerHTML = total;
+        }
+    </script>
+
+</body>
+</html>
