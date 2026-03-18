@@ -1,0 +1,226 @@
+#EVENT.HTML
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Experience | Tech Portal</title>
+    <!-- Google Fonts: Inter for that clean Tech UI look -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        :root {
+            --primary: #0061FF;
+            --bg: #F8F9FB;
+            --card-bg: #FFFFFF;
+            --text-main: #1A1D23;
+            --text-sub: #64748B;
+            --border: #E2E8F0;
+            --success: #10B981;
+        }
+
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: var(--bg); 
+            color: var(--text-main);
+            margin: 0; padding: 40px 20px;
+            display: flex; flex-direction: column; align-items: center;
+        }
+
+        .container { max-width: 700px; width: 100%; }
+        
+        header { text-align: center; margin-bottom: 40px; }
+        header h1 { font-weight: 700; font-size: 2rem; letter-spacing: -1px; }
+
+        /* The Event Card Styling - Professional "Meta/Google" Style */
+        .event { 
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .event:hover { transform: translateY(-2px); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); }
+
+        h3 { margin: 0 0 8px 0; font-size: 1.25rem; font-weight: 600; color: var(--text-main); }
+        .date-text { color: var(--text-sub); font-size: 0.9rem; margin-bottom: 16px; display: flex; align-items: center; }
+
+        /* Hidden Details Section */
+        .extra-details { 
+            display: none; 
+            background: #F1F5F9; 
+            padding: 20px; 
+            border-radius: 12px; 
+            margin: 20px 0;
+            border-left: 4px solid var(--primary);
+            line-height: 1.6;
+            color: #475569;
+        }
+
+        /* Modern Buttons */
+        button { 
+            font-family: 'Inter', sans-serif; font-weight: 600; font-size: 0.9rem;
+            padding: 10px 20px; border-radius: 8px; cursor: pointer; transition: all 0.2s;
+        }
+
+        .toggle-btn { background: white; border: 1px solid var(--border); color: var(--text-main); }
+        .toggle-btn:hover { background: #f1f5f9; border-color: #cbd5e1; }
+
+        .register-btn { background: var(--success); color: white; border: none; width: 100%; }
+        .register-btn:hover { opacity: 0.9; transform: scale(1.02); }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>Global Events 2024</h1>
+            <p style="color: var(--text-sub)">Explore, discover, and register for world-class experiences.</p>
+        </header>
+
+        <!-- Event Cards -->
+        <div class="event">
+            <h3>Metaverse Architecture Summit</h3>
+            <p class="date-text">📅 October 24, 2024 • Zurich, CH</p>
+            <div class="extra-details">
+                <p>Explore the future of spatial computing and digital twin technology with lead designers from around the world.</p>
+                <button class="register-btn">Register for Event</button>
+            </div>
+            <button class="toggle-btn">Show Details</button>
+        </div>
+
+        <div class="event">
+            <h3>Google Cloud Next '24</h3>
+            <p class="date-text">📅 November 12, 2024 • San Francisco, CA</p>
+            <div class="extra-details">
+                <p>Deep dive into Generative AI, machine learning infrastructure, and cloud native security frameworks.</p>
+                <button class="register-btn">Register for Event</button>
+            </div>
+            <button class="toggle-btn">Show Details</button>
+        </div>
+
+        <div class="event">
+            <h3>Tesla AI Day</h3>
+            <p class="date-text">📅 December 02, 2024 • Austin, TX</p>
+            <div class="extra-details">
+                <p>Live demonstrations of Optimus Gen 2, Full Self-Driving breakthroughs, and Dojo supercomputer hardware.</p>
+                <button class="register-btn">Register for Event</button>
+            </div>
+            <button class="toggle-btn">Show Details</button>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            // Task: Toggle Details & Change Text
+            $(".toggle-btn").click(function() {
+                const parent = $(this).closest(".event");
+                const details = parent.find(".extra-details");
+                const h3Label = parent.find("h3");
+                const titleText = h3Label.text();
+
+                details.slideToggle(400);
+
+                if ($(this).text() === "Show Details") {
+                    $(this).text("Hide Details");
+                    
+                    // Task: Alert title
+                    alert("Exclusive Access: " + titleText);
+
+                    // Task: Change background of ONLY selected using css()
+                    $(".event").css({"background-color": "#FFFFFF", "border-color": "#E2E8F0"});
+                    parent.css({"background-color": "#F0F7FF", "border-color": "#0061FF"});
+
+                    // Task: Traversing to highlight H3
+                    $("h3").css("color", "#1A1D23"); // Reset
+                    h3Label.css("color", "#0061FF");
+                } 
+                else {
+                    $(this).text("Show Details");
+                    parent.css({"background-color": "#FFFFFF", "border-color": "#E2E8F0"});
+                    h3Label.css("color", "#1A1D23");
+                }
+            });
+
+            // Task: Redirect and Data Passing
+            $(".register-btn").click(function() {
+                const name = $(this).closest(".event").find("h3").text();
+                window.location.href = "registration.html?event=" + encodeURIComponent(name);
+            });
+        });
+    </script>
+</body>
+</html>
+
+
+#REGISTRATION.HTML
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Registration</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body { 
+            font-family: 'Inter', sans-serif; background: #F8F9FB; 
+            display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0;
+        }
+        .form-card { 
+            background: white; padding: 40px; border-radius: 20px; 
+            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1); width: 100%; max-width: 400px;
+        }
+        h2 { font-weight: 700; margin-bottom: 24px; color: #1A1D23; }
+        label { display: block; font-weight: 600; font-size: 0.85rem; margin-bottom: 8px; color: #64748B; }
+        
+        input { 
+            width: 100%; padding: 12px 16px; margin-bottom: 20px; border-radius: 10px;
+            border: 1px solid #E2E8F0; box-sizing: border-box; font-size: 1rem; transition: border 0.2s;
+        }
+        input:focus { border-color: #0061FF; outline: none; }
+
+        /* Task: The non-editable text field style */
+        input[readonly] { background-color: #F1F5F9; color: #64748B; cursor: not-allowed; border-style: dashed; }
+
+        .submit-btn { 
+            background: #0061FF; color: white; border: none; width: 100%; 
+            padding: 14px; border-radius: 10px; font-weight: 700; cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="form-card">
+        <h2>Confirm Attendance</h2>
+        <form>
+            <label>You are registering for:</label>
+            <input type="text" id="eventInput" readonly>
+
+            <label>Your Full Name</label>
+            <input type="text" placeholder="e.g. Mark Zuckerberg" required>
+
+            <label>Work Email</label>
+            <input type="email" placeholder="name@company.com" required>
+
+            <button type="submit" class="submit-btn" onclick="alert('Registration Success!')">Complete Registration</button>
+        </form>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            // Task: Retrieve passed data and set it in the field
+            const params = new URLSearchParams(window.location.search);
+            const eventName = params.get('event');
+            if(eventName) {
+                $("#eventInput").val(eventName);
+            }
+        });
+    </script>
+</body>
+</html>
