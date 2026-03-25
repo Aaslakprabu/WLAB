@@ -1,0 +1,69 @@
+# BACKEND
+->SERVER.JS
+const express = require('express');
+const mysql = require('mysql2');
+const bodyParser = require('body-parser');
+const path = require('path');
+
+const app = express();
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static('public'));
+
+// Database Connection
+const db = mysql.createConnection({
+    host: 'localhost',
+    user: 'root',      // Replace with your MySQL username
+    password: '',      // Replace with your MySQL password
+    database: 'eventdb'
+});
+
+db.connect(err => {
+    if (err) throw err;
+    console.log('MySQL Connected...');
+});
+
+// Part 2: Register Endpoint
+app.post('/register', (req, res) => {
+    const { regno, name, events } = req.body;
+    
+    // Server-side validation: Max 3 events
+    const selectedEvents = Array.isArray(events) ? events : [events];
+    if (selectedEvents.length > 3) {
+        return res.status(400).send('<h1>Error: You can select a maximum of 3 events.</h1>');
+    }
+
+    const eventsString = selectedEvents.join(', ');
+
+    // Check for duplicate Registration Number
+    db.query('SELECT * FROM registrations WHERE regno = ?', [regno], (err, results) => {
+        if (results.length > 0) {
+            return res.status(400).send('<h1>Error: Registration Number already exists.</h1>');
+        }
+
+        // Store registration
+        const sql = 'INSERT INTO registrations (regno, name, events) VALUES (?, ?, ?)';
+        db.query(sql, [regno, name, eventsString], (err) => {
+            if (err) throw err;
+            res.send(`<h1>Registration Successful!</h1><p>Thank you ${name}.</p><a href="/">Back</a>`);
+        });
+    });
+});
+
+// Part 4: Admin Search Endpoint
+app.get('/search', (req, res) => {
+    const { regno } = req.query;
+    db.query('SELECT * FROM registrations WHERE regno = ?', [regno], (err, results) => {
+        if (err) throw err;
+        if (results.length > 0) {
+            res.json(results[0]);
+        } else {
+            res.status(404).json({ message: 'Register Number not found.' });
+        }
+    });
+});
+
+app.listen(3000, () => console.log('Server running on http://localhost:3000'));
+
+
+
+
